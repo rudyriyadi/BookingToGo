@@ -1,0 +1,84 @@
+{
+	"info": {
+		"_postman_id": "1ea7b951-9949-46b5-81dd-0b54b79cbf99",
+		"name": "BookingToGo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33936757"
+	},
+	"item": [
+		{
+			"name": "API Status",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Send GET request ",
+							"pm.test(\"Validate the response\", function () {",
+							"    // Parse the response body as JSON",
+							"    const users = pm.response.json();",
+							"    ",
+							"    // Loop through each user and check the data types",
+							"    users.forEach(user => {",
+							"        pm.expect(typeof user.id).to.eql('number', 'ID should be an integer');",
+							"        pm.expect(typeof user.name).to.eql('string', 'Name should be a string');",
+							"        pm.expect(typeof user.username).to.eql('string', 'Username should be a string');",
+							"        pm.expect(typeof user.email).to.eql('string', 'Email should be a string');",
+							"    });",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/users",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API Return",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Bookingtogo\",\n    \"username\": \"Btg.test\",\n    \"email\": \"bookingtogo.test@mail.com\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/users",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
